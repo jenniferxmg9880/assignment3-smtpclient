@@ -14,6 +14,29 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientSocket.send(heloCommand.encode())
     recv1 = clientSocket.recv(1024).decode()
 
+    mailFromCommand ='MAIL FROM:<alice@gmail.com>\r\n'
+    clientSocket.send(mailFromCommand.encode())
+    recv2 = clientSocket.recv(1024).decode()
+
+    recptToCommand = 'RCPT TO:<bob@gmail.com>\r\n'
+    clientSocket.send(rcptToCommand.encode())
+    recv3 = clientSocket.recv(1024).decode()
+
+    dataCommand = 'DATA\r\n'
+    clientSocket.send(dataCommand.encode())
+    recv4 = clientSocket.recv(1024).decode()
+
+    clientSocket.send(msg.encode())
+
+    clientSocket.send(endmsg.encode())
+    recv5 = clientSocket.recv(1024).decode()
+
+    quitCommand = 'QUIT\r\n'
+    clientSocket.send(quitCommand.encode())
+    recv6 = clientSocket.recv(1024).decode()
+
+    clientSocket.close()
+
 
 if __name__ == '__main__':
     smtp_client(1025, '127.0.0.1')
