@@ -10,8 +10,8 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     recv = clientSocket.recv(1024).decode()
     
-    heloCommand = 'HELO Alice\r\n'
-    clientSocket.send(heloCommand.encode())
+    helloCommand = 'HELO Alice\r\n'
+    clientSocket.send(helloCommand.encode())
     recv1 = clientSocket.recv(1024).decode()
 
     mailFromCommand ='MAIL FROM:<alice@gmail.com>\r\n'
