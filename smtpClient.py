@@ -19,7 +19,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     recv2 = clientSocket.recv(1024).decode()
 
     recptToCommand = 'RCPT TO:<bob@gmail.com>\r\n'
-    clientSocket.send(rcptToCommand.encode())
+    clientSocket.send(recptToCommand.encode())
     recv3 = clientSocket.recv(1024).decode()
 
     dataCommand = 'DATA\r\n'
